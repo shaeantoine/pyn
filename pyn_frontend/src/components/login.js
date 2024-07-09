@@ -14,7 +14,22 @@ function Login() {
       password
     })
     .then(response => {
-      navigate('/benefits');
+      localStorage.setItem('token', response.data.token);
+      axios.get('http://localhost:8000/api/users/', {
+        headers: {
+          'Authorization': `Token ${response.data.token}`
+        }
+      })
+      .then(userResponse => {
+        const userType = userResponse.data[0].profile.user_type;
+        if (userType === 'EMPLOYEE') {
+          navigate('/benefits');
+        } else if (userType === 'TEAM_LEAD') {
+          navigate('/team-benefits');
+        } else if (userType === 'HR') {
+          navigate('/all-benefits');
+        }
+      });
     })
     .catch(error => {
       console.error('There was an error logging in!', error);

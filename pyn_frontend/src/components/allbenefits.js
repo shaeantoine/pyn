@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-function Benefits() {
+function AllBenefits() {
   const [benefits, setBenefits] = useState([]);
 
   useEffect(() => {
@@ -21,14 +21,14 @@ function Benefits() {
 
   return (
     <div>
-      <h1>Your Benefits</h1>
+      <h1>All Employee Benefits</h1>
       <ul>
         {benefits.map(benefit => (
-          <li key={benefit.id}>{benefit.benefit.name}: {benefit.benefit.description} - ${benefit.benefit.cost}</li>
+          <li key={benefit.id}>{benefit.employee.username} - {benefit.benefit.name}: {benefit.benefit.description} - ${benefit.benefit.cost}</li>
         ))}
       </ul>
     </div>
   );
 }
 
-export default Benefits;
+export default AllBenefits;

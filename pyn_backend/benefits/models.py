@@ -1,6 +1,15 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+class Profile(models.Model):
+    USER_TYPES = [
+        ('EMPLOYEE', 'Employee'),
+        ('TEAM_LEAD', 'Team Lead'),
+        ('HR', 'HR'),
+    ]
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user_type = models.CharField(max_length=10, choices=USER_TYPES, default='EMPLOYEE')
+
 class Benefit(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()

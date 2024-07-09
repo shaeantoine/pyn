@@ -1,9 +1,10 @@
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from benefits.views import BenefitViewSet, EmployeeBenefitViewSet
+from benefits.views import UserViewSet, BenefitViewSet, EmployeeBenefitViewSet
 
 router = DefaultRouter()
+router.register(r'users', UserViewSet)
 router.register(r'benefits', BenefitViewSet)
 router.register(r'employee-benefits', EmployeeBenefitViewSet)
 
